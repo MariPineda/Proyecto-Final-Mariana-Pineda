@@ -1,0 +1,22 @@
+{% extends 'padre.html' %}
+{% load static %}
+{% block contenidoQueCambia %}
+
+<h1>Formulario de libros</h1>
+<body>
+    <form action="{% url 'libros_formulario'%}" method="post">{% csrf_token %}
+        <!--Acá va nuestro formulario-->
+        <table>
+
+             {{formulario.as_table}}
+
+        </table>
+        <p>Título: <input type="text" name="titulo"></p>
+        <p>Tipo: <input type="text" name="tipo"></p>
+        <p>Edad Recomendada: <input type="number" name="edadRecomendada"></p>
+    
+        <input type="submit" value="Enviar">
+
+    </form>
+
+{% endblock %}

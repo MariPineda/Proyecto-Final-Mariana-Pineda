@@ -1,0 +1,21 @@
+{% extends 'padre.html' %}
+{% load static %}
+{% block contenidoQueCambia %}
+
+<h2>Resultados de la Búsqueda</h2>
+
+{% if socio %}
+{% for socio in socio %}
+<p>Nombre socio:{{socio.nombre}} </p>
+<p>Apellido socio:{{socio.apellido}} </p>
+<p>email socio:{{socio.email}} </p>
+<p>Número de socio:{{socio.socio}} </p>
+<p>Socio activo:{{socio.activo}} </p>
+{% endfor %}
+
+{% else %}
+<h2>No se encontró el socio</h2>
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'padre.html' %}
+{% load static %}
+{% block contenidoQueCambia %}
+<h1>Formulario de búsqueda de socio</h1>
+
+<form action="{% url 'busqueda_socios' %}" method="get">
+
+    <p>Socio: <input type="number" name="socio" id="socio"></p>
+
+    <input type="submit" value="Enviar">
+</form>
+
+{% endblock %}

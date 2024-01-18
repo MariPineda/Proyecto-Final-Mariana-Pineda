@@ -1,0 +1,12 @@
+{% extends 'padre.html' %}
+{% load static %}
+{% block contenidoQueCambia %}
+<h1>No dejes para mañana lo que puedas leer hoy</h1>
+{{mensaje}}
+{% if request.user.is_authenticated %}
+<div class="text-center">
+    <img height="480px" src="{{url}}">
+    <h1>Hola {{user.username}}</h1>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Socios</title>
+</head>
+<body>
+    <ul>
+        {% for socio in object_list %}
+        <li>
+            <p> Nombre: {{socio.apellido}}</p>
+            <p>
+                <a href="{% url 'Detail' socio.id %}">Ver</a>
+                <a href="{% url 'Edit' socio.id %}">Editar</a>
+                <a href="{% url 'Delete' socio.id %}">Eliminar</a>
+                
+
+            </p>
+        </li>
+        {% endfor %}
+
+        <br>
+        <a href="{% url 'New' %}">Crear</a>
+    </ul>
+    
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda</title>
+</head>
+
+<body>
+    <h2>Resultados del socio {{socio}} </h2>
+
+    {% for socio in socios %}
+
+    <li>Nombre:{{socios.nombre}}</li>
+    <li>Apellido:{{socios.apellido}}</li>
+    <li>Email:{{socios.email}}</li>
+    <li>Número de socio:{{socios.socio}}</li>
+    <li>Estado:{{socios.activo}}</li>
+
+    {% endfor %}
+
+  
+
+</body>
+</html>
