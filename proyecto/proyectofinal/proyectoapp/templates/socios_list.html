@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de Socios</title>
-</head>
+
+{% extends 'padre.html' %}
+{% load static %}
+{% block contenidoQueCambia %}
+
+<h1>Listado de socios</h1>
 <body>
     <ul>
         {% for socio in object_list %}
@@ -25,4 +24,5 @@
     </ul>
     
 </body>
-</html>
+  
+{% endblock %}

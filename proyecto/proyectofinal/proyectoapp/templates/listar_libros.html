@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de Libros</title>
-</head>
+
+{% extends 'padre.html' %}
+{% load static %}
+{% block contenidoQueCambia %}
+
+<h1>Listado de libros</h1>
 <body>
     {% for l in libros %}
     <li>{{l}}</li>
@@ -16,7 +15,21 @@
     </button>
     {% endfor %}
     <br>
-    <a href="{% url 'libros' %}">Agregar libro</a>
-</body>
+    <h1>Agregar libro</h1>
+    <form action="{% url 'libros_formulario'%}" method="post">{% csrf_token %}
+        <!--Acá va nuestro formulario-->
+        <table>
 
-</html>
+             {{formulario.as_table}}
+
+        </table>
+        <p>Título: <input type="text" name="titulo"></p>
+        <p>Tipo: <input type="text" name="tipo"></p>
+        <p>Edad Recomendada: <input type="number" name="edadRecomendada"></p>
+    
+        <input type="submit" value="Enviar">
+
+    </form>
+</body>
+  
+{% endblock %}

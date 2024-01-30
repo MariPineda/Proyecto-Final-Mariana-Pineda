@@ -13,6 +13,8 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 def index(request):
 
     if request.user.is_authenticated:
@@ -42,7 +44,7 @@ def admin(request):
 
     return render(request, 'admin.html')
     
-
+@login_required
 def socios_formulario(request):
 
     if request.method == "POST":
@@ -64,7 +66,7 @@ def socios_formulario(request):
         formulario = SociosFormulario()
         return render(request, 'socios_formulario.html', {"formulario": formulario})
     
-    
+@login_required    
 def libros_formulario(request):
 
     if request.method == "POST":
@@ -85,6 +87,7 @@ def libros_formulario(request):
         return render(request, 'libros_formulario.html', {"formulario": formulario})
 
 
+@login_required
 def busqueda_socios(request):
     
     if request.method == "GET":
@@ -98,7 +101,7 @@ def busqueda_socios(request):
         
         return render(request, 'busqueda_socios_respuesta.html', {"socio": socio})
         
-        
+@login_required       
 def buscar_socios(request):
 
     if request.method == "GET":
@@ -113,12 +116,13 @@ def buscar_socios(request):
 
         return render (request,'busqueda.html', {"socio" : socio})
     
-
+@login_required
 def listar_libros(request):
     libros = Libros.objects.all()
     contexto = {"libros" : libros}
     return render(request, 'listar_libros.html', contexto)
 
+@login_required
 def eliminar_libros(request, nombre_libro):
 
     libro = Libros.objects.get(titulo=nombre_libro)
@@ -130,6 +134,7 @@ def eliminar_libros(request, nombre_libro):
     
     return render(request, 'listar_libros.html', contexto)
 
+@login_required
 def editar_libros(request, nombre_libro):
 
     libro = Libros.objects.get(titulo=nombre_libro)
@@ -255,31 +260,36 @@ def avatar(request):
     return render(request, 'avatar.html', {"formulario": formulario})
 
 #Vistas basadas en clases
-class SociosList(ListView):
+
+class SociosList(LoginRequiredMixin, ListView):
 
     model = Socios
     template_name = 'socios_list.html'
 
-class SociosDetalle(DetailView):
+
+class SociosDetalle(LoginRequiredMixin, DetailView):
 
     model = Socios
     template_name = 'socios_detalle.html'
 
-class SociosCreacion(CreateView):
+
+class SociosCreacion(LoginRequiredMixin, CreateView):
 
     model = Socios
     fields = ['nombre', 'apellido', 'email', 'socio', 'activo']
     template_name = 'socios_form.html'
     success_url = "/proyecto-app/socios/list"
 
-class SociosUpdate(UpdateView):
+
+class SociosUpdate(LoginRequiredMixin, UpdateView):
 
     model = Socios
     fields = ['nombre', 'apellido', 'email', 'socio', 'activo']
     template_name = 'socios_form.html'
     success_url = "/proyecto-app/socios/list"
 
-class SociosDelete(DeleteView):
+
+class SociosDelete(LoginRequiredMixin, DeleteView):
 
     model = Socios
     template_name = 'socios_confirm_delete.html'

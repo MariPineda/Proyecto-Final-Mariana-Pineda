@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avatar</title>
-</head>
+
+{% extends 'padre.html' %}
+{% load static %}
+{% block contenidoQueCambia %}
+
+<h1>Avatar</h1>
+
 <body>
     <form action="{% url 'avatar' %}" method="post" enctype="multipart/form-data">{% csrf_token%}
         <table>
@@ -13,4 +13,5 @@
         <input type="submit" value="Enviar">
     </form>
 </body>
-</html>
+  
+{% endblock %}
